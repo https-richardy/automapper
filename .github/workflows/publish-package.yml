@@ -3,7 +3,7 @@ name: pipeline ci/cd - publish mapping package
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   publish:
