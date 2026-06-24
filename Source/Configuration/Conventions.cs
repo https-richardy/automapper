@@ -1,9 +1,11 @@
 namespace HttpsRichardy.Mapping.Configuration.Conventions;
+
 public interface ISourceToDestinationNameMapper
 {
     MemberInfo GetSourceMember(TypeDetails sourceTypeDetails, Type destType, Type destMemberType, string nameToSearch);
     void Merge(ISourceToDestinationNameMapper other);
 }
+
 [EditorBrowsable(EditorBrowsableState.Never)]
 public sealed class MemberConfiguration
 {
