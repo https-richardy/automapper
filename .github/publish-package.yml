@@ -8,6 +8,8 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
 
     steps:
       - name: checkout code
@@ -43,6 +45,9 @@ jobs:
           dotnet pack -c Release -p:PackageVersion=$VERSION -o ./output --no-build
           echo "package_version=$VERSION" >> $GITHUB_OUTPUT
 
+      - name: nuget login (oidc → temp api key)
+        uses: NuGet/login@v1
+        id: login
+
       - name: push package to nuget
-        if: ${{ inputs.publish_package }}
-        run: dotnet nuget push ./output/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
+        run: dotnet nuget push ./output/*.nupkg --api-key ${{ steps.login.outputs.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
