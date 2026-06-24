@@ -7,7 +7,6 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <SignAssembly>true</SignAssembly>
     <PackageId>HttpsRichardy.Mapping</PackageId>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
 
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
